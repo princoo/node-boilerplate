@@ -8,7 +8,9 @@
     "build": "tsc",
     "start": "node dist/app.js",
     "dev": "nodemon --exec ts-node src/app.ts",
-    "lint": "eslint \"src/**/*.{ts,js,css,html,json,md}\""
+    "lint": "eslint \"src/**/*.{ts,js,css,html,json,md}\"",
+    "prettier": "prettier --write \"src/**/*.{ts,js,css,html,json,md}\"",
+    "lint:fix": "eslint --fix --ext .ts ."
   },
   "keywords": [],
   "author": "",
@@ -31,7 +33,7 @@
     "nodemon": "^3.1.4",
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.4"
+    "typescript": "file:"
   },
   "dependencies": {
     "@types/cors": "^2.8.17",
