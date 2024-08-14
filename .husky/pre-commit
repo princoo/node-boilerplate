@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+#!/bin/sh
+FILES=$(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g')  # gets the names of the files that are staged for commit
+[ -z "$FILES" ] && exit 0  # checks if there are any files staged for commit
+
+npm run prettier:fix
+npm run lint:fix && npm run test
+git add .  # This adds all changes (including those made by Prettier and the linter) back to the staging area.
+
+echo "$FILES" | xargs git add # Add back the modified/prettified files to staging
+
+
+git update-index -g # Updates the Git index to reflect any changes made by the pre-commit script
+
+exit 0
